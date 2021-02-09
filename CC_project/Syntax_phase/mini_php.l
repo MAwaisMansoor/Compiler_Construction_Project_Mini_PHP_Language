@@ -2,7 +2,7 @@
    #include"mini_php.tab.h"
 %}
 
-del [ \t\n]
+
 let [a-zA-Z_]
 digit [-+]?[0-9]
 chr '[a-zA-Z0-9]'
@@ -13,9 +13,9 @@ single_line_com1 \/\/.*$
 single_line_com2 #.*$
 
 %%
-
-[\n]                        {return newLine;} 
-{del}+                      {}
+[ ]                         {}
+[\n]                        {}
+[\t]                        {}
 [Ii][fF]                    {return ifKeyWord;}
 [Ee][Ll][Ss][Ee]            {return elseKeyWord;}
 [Ee][Cc][Hh][Oo]            {return echoKeyWord;}

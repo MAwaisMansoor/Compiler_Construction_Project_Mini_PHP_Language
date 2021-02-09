@@ -6,7 +6,6 @@
 %}
 
 //Keyword tokkens
-%token newLine
 %token ifKeyWord elseKeyWord whileKeyWord echoKeyWord functionKeyWord
 
 //Identifiers and comment tokkens
