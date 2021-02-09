@@ -1,0 +1,28 @@
+<?php
+$var = 123;
+$var1 = -123;
+$var2 = +123;
+$var3 = 123.54;
+$var4 = -123.54;
+$var5 = +123.54;
+$var6 = 'c';
+$var7 = "string";
+if ($var1 == $var2) {
+echo "Great!";
+}
+else {
+echo "Bad!";
+}
+while ($var3 < 123.95) {
+echo "Lesser!";
+}
+function fun1() {
+echo "This is function 1";
+}
+// Single line comment
+# Single line comment
+/* Multi line comment */
+/* Also
+multi line comment */
+&
+?>
