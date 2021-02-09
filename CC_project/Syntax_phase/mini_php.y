@@ -30,9 +30,9 @@
 Program: 
         codeBlockStart STATEMENT_LIST codeBlockEnd 
         {
-                printf("\n*****************************\n")
+                printf("\n*****************************\n");
                 printf("Mubarak ho :)\nParse ho gya!"); 
-                printf("\n*****************************\n")
+                printf("\n*****************************\n");
                 exit(0);
         }
         ;
@@ -127,12 +127,14 @@ OPERATOR:
 %%
 
 int main() {
-    printf("\nSahi se PHP likhain:\n");
-    yyparse();
-    return 0;
+        printf("\nSahi se PHP likhain:\n");
+        yyparse();
+        return 0;
 }
 
-int yyerror(){
-    printf("\nError ageya :(\nSahi PHP likhain next time...\n");
-    exit(0);
+int yyerror(char const *s){
+        printf("\n*****************************\n");
+        printf("Error ageya :(\n-> %s\nSahi PHP likhain next time...", s);
+        printf("\n*****************************\n");
+        exit(0);
 }
