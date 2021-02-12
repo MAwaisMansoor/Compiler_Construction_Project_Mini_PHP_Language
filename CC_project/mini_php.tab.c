@@ -459,11 +459,11 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    31,    31,    42,    43,    48,    49,    50,    51,    52,
-      53,    54,    59,    65,    66,    71,    76,    82,    83,    84,
-      85,    86,    87,    88,    93,    99,   100,   101,   106,   107,
-     112,   113,   114,   115,   116,   117,   118,   119,   120,   121,
-     122,   123
+       0,    30,    30,    41,    42,    47,    48,    49,    50,    51,
+      52,    53,    58,    64,    65,    70,    75,    81,    82,    83,
+      84,    85,    86,    87,    92,    98,    99,   100,   105,   106,
+     111,   112,   113,   114,   115,   116,   117,   118,   119,   120,
+     121,   122
 };
 #endif
 
@@ -1423,7 +1423,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 32 "mini_php.y"
+#line 31 "mini_php.y"
     {
                 printf("\n*****************************\n");
                 printf("Mubarak ho :)\nParse ho gya!"); 
@@ -1647,11 +1647,14 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 127 "mini_php.y"
+#line 126 "mini_php.y"
 
 
 int main() {
-        printf("\nSahi se PHP likhain:\n");
+        extern FILE *yyin, *yyout;
+        yyin = fopen("source.txt", "r");
+        yyout = fopen("tokken.txt", "w");
+        //printf("\nSahi se PHP likhain:\n");
         yyparse();
         return 0;
 }

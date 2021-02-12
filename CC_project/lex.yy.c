@@ -443,7 +443,9 @@ char *yytext;
 #define INITIAL 0
 #line 2 "mini_php.l"
    #include"mini_php.tab.h"
-#line 447 "lex.yy.c"
+   int j = 0;
+   void putLexeme();
+#line 449 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -594,9 +596,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 15 "mini_php.l"
+#line 17 "mini_php.l"
 
-#line 600 "lex.yy.c"
+#line 602 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -681,226 +683,384 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 16 "mini_php.l"
-{}
+#line 18 "mini_php.l"
+{
+   fprintf(yyout, "< DELIMETER, SPACE >\n");
+}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "mini_php.l"
-{}
+#line 22 "mini_php.l"
+{
+   fprintf(yyout, "< DELIMETER, NEWLINE >\n");
+}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "mini_php.l"
-{}
+#line 26 "mini_php.l"
+{ 
+   fprintf(yyout, "< DELIMETER, TAB >\n", yytext);
+}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "mini_php.l"
-{return ifKeyWord;}
+#line 30 "mini_php.l"
+{
+   fprintf(yyout, "< KEYWORD, ");
+   putLexeme();
+   return ifKeyWord;
+}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "mini_php.l"
-{return elseKeyWord;}
+#line 36 "mini_php.l"
+{
+   fprintf(yyout, "< KEYWORD, ");
+   putLexeme();
+   return elseKeyWord;
+}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 21 "mini_php.l"
-{return echoKeyWord;}
+#line 42 "mini_php.l"
+{
+   fprintf(yyout, "< KEYWORD, ");
+   putLexeme();
+   return echoKeyWord;
+}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "mini_php.l"
-{return whileKeyWord;}
+#line 48 "mini_php.l"
+{
+   fprintf(yyout, "< KEYWORD, ");
+   putLexeme();
+   return whileKeyWord;
+}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "mini_php.l"
-{return functionKeyWord;}
+#line 54 "mini_php.l"
+{
+   fprintf(yyout, "< KEYWORD, ");
+   putLexeme();
+   return functionKeyWord;
+}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "mini_php.l"
-{return codeBlockStart;}
+#line 60 "mini_php.l"
+{
+   fprintf(yyout, "< CODEBLOCKSTART, ");
+   putLexeme();    
+   return codeBlockStart;
+}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 25 "mini_php.l"
-{return codeBlockEnd;}
+#line 66 "mini_php.l"
+{
+   fprintf(yyout, "< CODEBLOCKEND, ");
+   putLexeme();
+   return codeBlockEnd;
+}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 26 "mini_php.l"
-{return plusOperator;}
+#line 72 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return plusOperator;
+}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 27 "mini_php.l"
-{return minusOperator;}
+#line 78 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return minusOperator;
+}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 28 "mini_php.l"
-{return modulusOperator;}
+#line 84 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return modulusOperator;
+}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 29 "mini_php.l"
-{return multiplyOperator;}
+#line 90 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return multiplyOperator;
+}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 30 "mini_php.l"
-{return squareOperator;}
+#line 96 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return squareOperator;
+}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 31 "mini_php.l"
-{return divideOperator;}
+#line 102 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return divideOperator;
+}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 32 "mini_php.l"
-{return lessThanOperator;}
+#line 108 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return lessThanOperator;
+}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 33 "mini_php.l"
-{return greaterThanOperator;}
+#line 114 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return greaterThanOperator;
+}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 34 "mini_php.l"
-{return lessThanEqualToOperator;}
+#line 120 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return lessThanEqualToOperator;
+}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 35 "mini_php.l"
-{return greaterThanEqualToOperator;}
+#line 126 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return greaterThanEqualToOperator;
+}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 36 "mini_php.l"
-{return equalEqualToOperator;}
+#line 132 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return equalEqualToOperator;
+}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 37 "mini_php.l"
-{return equalToOperator;}
+#line 138 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return equalToOperator;
+}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 38 "mini_php.l"
-{return notEqualToOperator;}
+#line 144 "mini_php.l"
+{
+   fprintf(yyout, "< OPERATOR, ");
+   putLexeme();
+   return notEqualToOperator;
+}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 39 "mini_php.l"
-{return squareBracketOpen;}
+#line 150 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return squareBracketOpen;
+}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 40 "mini_php.l"
-{return squareBracketClose;}
+#line 156 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return squareBracketClose;
+}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 41 "mini_php.l"
-{return curlyBracketOpen;}
+#line 162 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return curlyBracketOpen;
+}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 42 "mini_php.l"
-{return curlyBracketClose;}
+#line 168 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return curlyBracketClose;
+}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 43 "mini_php.l"
-{return paranthesisOpen;}
+#line 174 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return paranthesisOpen;
+}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 44 "mini_php.l"
-{return paranthesisClose;}
+#line 180 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return paranthesisClose;
+}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 45 "mini_php.l"
-{return semicolon;}
+#line 186 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return semicolon;
+}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 46 "mini_php.l"
-{return comma;}
+#line 192 "mini_php.l"
+{
+   fprintf(yyout, "< PUNCTUATION, ");
+   putLexeme();
+   return comma;
+}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 47 "mini_php.l"
-{return dot;}
+#line 198 "mini_php.l"
+{
+   fprintf(yyout,"< PUNCTUATION, ");
+   putLexeme();
+   return dot;
+}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 48 "mini_php.l"
-{return characterLiteral;}
+#line 204 "mini_php.l"
+{
+   fprintf(yyout, "< CHARACTERLITERAL, ");
+   putLexeme();
+   return characterLiteral;
+}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 49 "mini_php.l"
-{return stringLiteral;}
+#line 210 "mini_php.l"
+{
+   fprintf(yyout, "< STRINGLITERAL, ");
+   putLexeme();
+   return stringLiteral;
+}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 50 "mini_php.l"
-{return integerLiteral;}
+#line 216 "mini_php.l"
+{
+   fprintf(yyout, "< INTEGERLITERAL, ");
+   putLexeme();
+   return integerLiteral;
+}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 51 "mini_php.l"
-{return identifier;}
+#line 222 "mini_php.l"
+{
+   fprintf(yyout, "< IDENTIFIER, ");
+   putLexeme();
+   return identifier;
+}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 52 "mini_php.l"
-{return identifier;}   
+#line 228 "mini_php.l"
+{
+   fprintf(yyout, "< IDENTIFIER, ");
+   putLexeme();
+   return identifier;
+}   
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 53 "mini_php.l"
-{return floatLiteral;}
+#line 234 "mini_php.l"
+{
+   fprintf(yyout, "< FLOATLITERAL, ");
+   putLexeme();
+   return floatLiteral;
+}
 	YY_BREAK
 case 39:
 *yy_cp = yy_hold_char; /* undo effects of setting up yytext */
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 54 "mini_php.l"
-{return singleLineComment;}
+#line 240 "mini_php.l"
+{
+   fprintf(yyout, "< COMMENT, ");
+   putLexeme();
+   return singleLineComment;
+}
 	YY_BREAK
 case 40:
 *yy_cp = yy_hold_char; /* undo effects of setting up yytext */
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 55 "mini_php.l"
-{return singleLineComment;}
+#line 246 "mini_php.l"
+{
+   fprintf(yyout, "< COMMENT, ");
+   putLexeme();
+   return singleLineComment;
+}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 56 "mini_php.l"
-{return multiLineComment;}       
+#line 252 "mini_php.l"
+{
+   fprintf(yyout, "< COMMENT, ");
+   putLexeme();
+   return multiLineComment;
+}      
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 57 "mini_php.l"
+#line 258 "mini_php.l"
 {return yytext[0];}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 59 "mini_php.l"
+#line 260 "mini_php.l"
 ECHO;
 	YY_BREAK
-#line 904 "lex.yy.c"
+#line 1064 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1786,9 +1946,17 @@ int main()
 	return 0;
 	}
 #endif
-#line 59 "mini_php.l"
+#line 260 "mini_php.l"
 
 
+void putLexeme(){
+   j = 0;
+   while(yytext[j]!='\0'){
+      putc(yytext[j], yyout);
+      j++;
+   }
+   fputs(" >\n", yyout);
+}
 int yywrap(void){
    return 1;
 }

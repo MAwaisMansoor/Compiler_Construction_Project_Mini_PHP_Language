@@ -126,7 +126,10 @@ OPERATOR:
 %%
 
 int main() {
-        printf("\nSahi se PHP likhain:\n");
+        extern FILE *yyin, *yyout;
+        yyin = fopen("source.txt", "r");
+        yyout = fopen("tokken.txt", "w");
+        //printf("\nSahi se PHP likhain:\n");
         yyparse();
         return 0;
 }

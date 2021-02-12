@@ -1,0 +1,6 @@
+<?php
+$var = 10;
+if($var==2) {
+echo "okay";
+}
+?>
