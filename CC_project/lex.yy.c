@@ -445,7 +445,9 @@ char *yytext;
    #include"mini_php.tab.h"
    int j = 0;
    void putLexeme();
-#line 449 "lex.yy.c"
+   void putIdentifier();
+   FILE *idout;
+#line 451 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -596,9 +598,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 17 "mini_php.l"
+#line 19 "mini_php.l"
 
-#line 602 "lex.yy.c"
+#line 604 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -683,28 +685,28 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 18 "mini_php.l"
+#line 20 "mini_php.l"
 {
    fprintf(yyout, "< DELIMETER, SPACE >\n");
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 22 "mini_php.l"
+#line 24 "mini_php.l"
 {
    fprintf(yyout, "< DELIMETER, NEWLINE >\n");
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 26 "mini_php.l"
+#line 28 "mini_php.l"
 { 
    fprintf(yyout, "< DELIMETER, TAB >\n", yytext);
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 30 "mini_php.l"
+#line 32 "mini_php.l"
 {
    fprintf(yyout, "< KEYWORD, ");
    putLexeme();
@@ -713,7 +715,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 36 "mini_php.l"
+#line 38 "mini_php.l"
 {
    fprintf(yyout, "< KEYWORD, ");
    putLexeme();
@@ -722,7 +724,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "mini_php.l"
+#line 44 "mini_php.l"
 {
    fprintf(yyout, "< KEYWORD, ");
    putLexeme();
@@ -731,7 +733,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 48 "mini_php.l"
+#line 50 "mini_php.l"
 {
    fprintf(yyout, "< KEYWORD, ");
    putLexeme();
@@ -740,7 +742,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 54 "mini_php.l"
+#line 56 "mini_php.l"
 {
    fprintf(yyout, "< KEYWORD, ");
    putLexeme();
@@ -749,7 +751,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 60 "mini_php.l"
+#line 62 "mini_php.l"
 {
    fprintf(yyout, "< CODEBLOCKSTART, ");
    putLexeme();    
@@ -758,7 +760,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 66 "mini_php.l"
+#line 68 "mini_php.l"
 {
    fprintf(yyout, "< CODEBLOCKEND, ");
    putLexeme();
@@ -767,7 +769,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 72 "mini_php.l"
+#line 74 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -776,7 +778,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 78 "mini_php.l"
+#line 80 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -785,7 +787,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 84 "mini_php.l"
+#line 86 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -794,7 +796,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 90 "mini_php.l"
+#line 92 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -803,7 +805,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 96 "mini_php.l"
+#line 98 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -812,7 +814,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 102 "mini_php.l"
+#line 104 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -821,7 +823,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 108 "mini_php.l"
+#line 110 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -830,7 +832,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 114 "mini_php.l"
+#line 116 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -839,7 +841,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 120 "mini_php.l"
+#line 122 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -848,7 +850,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 126 "mini_php.l"
+#line 128 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -857,7 +859,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 132 "mini_php.l"
+#line 134 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -866,7 +868,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 138 "mini_php.l"
+#line 140 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -875,7 +877,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 144 "mini_php.l"
+#line 146 "mini_php.l"
 {
    fprintf(yyout, "< OPERATOR, ");
    putLexeme();
@@ -884,7 +886,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 150 "mini_php.l"
+#line 152 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -893,7 +895,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 156 "mini_php.l"
+#line 158 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -902,7 +904,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 162 "mini_php.l"
+#line 164 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -911,7 +913,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 168 "mini_php.l"
+#line 170 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -920,7 +922,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 174 "mini_php.l"
+#line 176 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -929,7 +931,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 180 "mini_php.l"
+#line 182 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -938,7 +940,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 186 "mini_php.l"
+#line 188 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -947,7 +949,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 192 "mini_php.l"
+#line 194 "mini_php.l"
 {
    fprintf(yyout, "< PUNCTUATION, ");
    putLexeme();
@@ -956,7 +958,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 198 "mini_php.l"
+#line 200 "mini_php.l"
 {
    fprintf(yyout,"< PUNCTUATION, ");
    putLexeme();
@@ -965,7 +967,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 204 "mini_php.l"
+#line 206 "mini_php.l"
 {
    fprintf(yyout, "< CHARACTERLITERAL, ");
    putLexeme();
@@ -974,7 +976,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 210 "mini_php.l"
+#line 212 "mini_php.l"
 {
    fprintf(yyout, "< STRINGLITERAL, ");
    putLexeme();
@@ -983,7 +985,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 216 "mini_php.l"
+#line 218 "mini_php.l"
 {
    fprintf(yyout, "< INTEGERLITERAL, ");
    putLexeme();
@@ -992,25 +994,29 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 222 "mini_php.l"
+#line 224 "mini_php.l"
 {
    fprintf(yyout, "< IDENTIFIER, ");
+   fprintf(idout, "< IDENTIFIER, ");
    putLexeme();
+   putIdentifier();
    return identifier;
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 228 "mini_php.l"
+#line 232 "mini_php.l"
 {
    fprintf(yyout, "< IDENTIFIER, ");
+   fprintf(idout, "< IDENTIFIER, ");
    putLexeme();
+   putIdentifier();
    return identifier;
 }   
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 234 "mini_php.l"
+#line 240 "mini_php.l"
 {
    fprintf(yyout, "< FLOATLITERAL, ");
    putLexeme();
@@ -1022,7 +1028,7 @@ case 39:
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 240 "mini_php.l"
+#line 246 "mini_php.l"
 {
    fprintf(yyout, "< COMMENT, ");
    putLexeme();
@@ -1034,7 +1040,7 @@ case 40:
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 246 "mini_php.l"
+#line 252 "mini_php.l"
 {
    fprintf(yyout, "< COMMENT, ");
    putLexeme();
@@ -1043,7 +1049,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 252 "mini_php.l"
+#line 258 "mini_php.l"
 {
    fprintf(yyout, "< COMMENT, ");
    putLexeme();
@@ -1052,15 +1058,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 258 "mini_php.l"
+#line 264 "mini_php.l"
 {return yytext[0];}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 260 "mini_php.l"
+#line 266 "mini_php.l"
 ECHO;
 	YY_BREAK
-#line 1064 "lex.yy.c"
+#line 1070 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1946,7 +1952,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 260 "mini_php.l"
+#line 266 "mini_php.l"
 
 
 void putLexeme(){
@@ -1957,6 +1963,16 @@ void putLexeme(){
    }
    fputs(" >\n", yyout);
 }
+
+void putIdentifier(){
+   j = 0;
+   while(yytext[j]!='\0'){
+      putc(yytext[j], idout);
+      j++;
+   }
+   fputs(" >\n", idout);
+}
+
 int yywrap(void){
    return 1;
 }

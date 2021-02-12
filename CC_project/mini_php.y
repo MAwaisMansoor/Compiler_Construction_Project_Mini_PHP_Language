@@ -98,6 +98,8 @@ EXPRESSION_STATEMENT:
         paranthesisOpen EXPRESSION_STATEMENT paranthesisClose EXPRESSION_STATEMENT1
         | identifier EXPRESSION_STATEMENT1
         | integerLiteral EXPRESSION_STATEMENT1
+        | characterLiteral EXPRESSION_STATEMENT1
+        | stringLiteral EXPRESSION_STATEMENT1
         ;
 
 
@@ -126,10 +128,10 @@ OPERATOR:
 %%
 
 int main() {
-        extern FILE *yyin, *yyout;
+        extern FILE *yyin, *yyout, *idout;
         yyin = fopen("source.txt", "r");
         yyout = fopen("tokken.txt", "w");
-        //printf("\nSahi se PHP likhain:\n");
+        idout = fopen("identifier.txt", "w");
         yyparse();
         return 0;
 }

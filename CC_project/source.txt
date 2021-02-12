@@ -1,6 +1,16 @@
 <?php
 $var = 10;
+$var1="string";
 if($var==2) {
 echo "okay";
 }
+while($var==$var1){
+echo "this".$var." is";
+}
+//single line comment
+#single line comment
+/*multi
+line
+comment
+*/
 ?>

@@ -2,6 +2,8 @@
    #include"mini_php.tab.h"
    int j = 0;
    void putLexeme();
+   void putIdentifier();
+   FILE *idout;
 %}
 
 
@@ -221,13 +223,17 @@ single_line_com2 #.*$
 
 "$"({let}|{digit})* {
    fprintf(yyout, "< IDENTIFIER, ");
+   fprintf(idout, "< IDENTIFIER, ");
    putLexeme();
+   putIdentifier();
    return identifier;
 }
 
 ({let}|{digit})* {
    fprintf(yyout, "< IDENTIFIER, ");
+   fprintf(idout, "< IDENTIFIER, ");
    putLexeme();
+   putIdentifier();
    return identifier;
 }   
 
@@ -267,6 +273,16 @@ void putLexeme(){
    }
    fputs(" >\n", yyout);
 }
+
+void putIdentifier(){
+   j = 0;
+   while(yytext[j]!='\0'){
+      putc(yytext[j], idout);
+      j++;
+   }
+   fputs(" >\n", idout);
+}
+
 int yywrap(void){
    return 1;
 }
