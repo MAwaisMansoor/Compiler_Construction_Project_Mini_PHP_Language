@@ -3,7 +3,10 @@
    int j = 0;
    void putLexeme();
    void putIdentifier();
-   FILE *idout;
+   FILE *idout, *errorOut;
+   char isIdExist[50][50] = {"empty"};
+   int isIdentifierExist();
+   int line = 2;
 %}
 
 
@@ -22,6 +25,7 @@ single_line_com2 #.*$
 }
 
 [\n] {
+   line = line + 1;
    fprintf(yyout, "< DELIMETER, NEWLINE >\n");
 }
 
@@ -59,7 +63,7 @@ single_line_com2 #.*$
    return functionKeyWord;
 }
 
-"<?"[Pp][Hh][Pp] {
+"<?"[Pp][Hh][Pp][ \n\t] {
    fprintf(yyout, "< CODEBLOCKSTART, ");
    putLexeme();    
    return codeBlockStart;
@@ -261,11 +265,21 @@ single_line_com2 #.*$
    return multiLineComment;
 }      
  
-.                           {return yytext[0];}
+. {
+   fprintf(errorOut, "< ERROR, ");
+   j = 0;
+   while(yytext[j]!='\0'){
+      putc(yytext[j], errorOut);
+      j++;
+   }
+   fputs(" >", errorOut);
+   fprintf(errorOut, "< LINENO, %d >\n", line);
+   return undefinedID;
+}
 
 %%
 
-void putLexeme(){
+void putLexeme() {
    j = 0;
    while(yytext[j]!='\0'){
       putc(yytext[j], yyout);
@@ -274,7 +288,7 @@ void putLexeme(){
    fputs(" >\n", yyout);
 }
 
-void putIdentifier(){
+void putIdentifier() {
    j = 0;
    while(yytext[j]!='\0'){
       putc(yytext[j], idout);
@@ -283,7 +297,11 @@ void putIdentifier(){
    fputs(" >\n", idout);
 }
 
-int yywrap(void){
+int isIdentifierExist() {
+   
+}
+
+int yywrap(void) {
    return 1;
 }
 

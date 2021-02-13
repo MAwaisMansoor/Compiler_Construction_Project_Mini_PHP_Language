@@ -74,7 +74,8 @@
      paranthesisClose = 290,
      semicolon = 291,
      comma = 292,
-     dot = 293
+     dot = 293,
+     undefinedID = 294
    };
 #endif
 

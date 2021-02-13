@@ -3,6 +3,7 @@
     #include<stdlib.h>
     int yylex();
     int yyerror();
+    int isCodeCompiled = 1;
 %}
 
 //Keyword tokkens
@@ -24,14 +25,26 @@
 %token curlyBracketOpen curlyBracketClose squareBracketOpen squareBracketClose
 %token paranthesisOpen paranthesisClose semicolon comma dot
 
+//Error tokken
+%token undefinedID
+
 %%
 
 Program: 
         codeBlockStart STATEMENT_LIST codeBlockEnd 
         {
-                printf("\n*****************************\n");
-                printf("Mubarak ho :)\nParse ho gya!"); 
-                printf("\n*****************************\n");
+                if(isCodeCompiled == 1){
+                        printf("\n******************************\n");
+                        printf("Code Compiled Successfully! :)"); 
+                        printf("\n******************************\n");
+                }
+                else{
+                        printf("\n*****************************\n");
+                        printf("Compilation failed! :(\n");
+                        printf("\nYour code contains error\
+ which you can see in file named \"error.txt\"\n"); 
+                        printf("\n*****************************\n");
+                }
                 exit(0);
         }
         ;
@@ -51,6 +64,11 @@ STATEMENT:
         | FUNCTION_STATEMENT
         | singleLineComment
         | multiLineComment
+        | undefinedID {
+                if(isCodeCompiled == 1){
+                        isCodeCompiled = 0;
+                }
+        }
         ;
 
 
@@ -89,9 +107,9 @@ ECHO_STATEMENT:
 
 
 FUNCTION_STATEMENT:
-                functionKeyWord identifier paranthesisOpen paranthesisClose
-                curlyBracketOpen STATEMENT STATEMENT_LIST curlyBracketClose
-                ;
+        functionKeyWord identifier paranthesisOpen paranthesisClose
+        curlyBracketOpen STATEMENT STATEMENT_LIST curlyBracketClose
+        ;
 
 
 EXPRESSION_STATEMENT: 
@@ -128,10 +146,11 @@ OPERATOR:
 %%
 
 int main() {
-        extern FILE *yyin, *yyout, *idout;
+        extern FILE *yyin, *yyout, *idout, *errorOut;
         yyin = fopen("source.txt", "r");
         yyout = fopen("tokken.txt", "w");
         idout = fopen("identifier.txt", "w");
+        errorOut = fopen("error.txt", "w");
         yyparse();
         return 0;
 }
